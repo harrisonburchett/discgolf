@@ -9,7 +9,7 @@ pages_build_output_dir = "public"
 [[d1_databases]]
 binding = "DB"
 database_name = "disc-golf-tracker-db"
-database_id = "YOUR_DATABASE_ID_HERE"
+database_id = "933d8667-df76-4722-a91d-71aedb31dcff"
 
 # ─── Secrets ────────────────────────────────────────────────────
 # JWT_SECRET is deliberately NOT declared here. Anything under [vars]
