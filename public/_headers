@@ -1,0 +1,22 @@
+# Cloudflare Pages security headers.
+#
+# script-src is 'self' with no 'unsafe-inline'. That is only possible because
+# there are zero inline event handlers and zero inline <script> blocks in this
+# app — every interaction goes through the delegated data-action mechanism in
+# actions.js. If you ever add an onclick= attribute, this policy will block it,
+# which is the intended outcome rather than a problem to work around.
+#
+# style-src is likewise strict: data-driven widths are applied through the
+# CSSOM (see applyDynamicWidths) rather than as markup style attributes.
+
+/*
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; form-action 'none'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  X-Frame-Options: DENY
+  Permissions-Policy: geolocation=(self), camera=(), microphone=(), payment=()
+  Cross-Origin-Opener-Policy: same-origin
+
+# Course data and scorecards are per-user; never let a shared cache hold them.
+/api/*
+  Cache-Control: no-store

@@ -1,0 +1,25 @@
+name = "disc-golf-tracker-ingest"
+main = "src/index.js"
+compatibility_date = "2024-09-25"
+
+# This is a SEPARATE Worker from the Pages project on purpose: Cloudflare Pages
+# Functions cannot have cron triggers. It binds the same D1 database, so paste
+# the same database_id you put in ../wrangler.toml.
+[[d1_databases]]
+binding = "DB"
+database_name = "disc-golf-tracker-db"
+database_id = "YOUR_DATABASE_ID_HERE"
+
+# One region per tick, every 6 hours. With ~17 seeded regions that is a full
+# sweep every four days or so, which is plenty for data that changes as slowly
+# as course installations do — and it keeps well inside Overpass etiquette.
+[triggers]
+crons = ["0 */6 * * *"]
+
+[vars]
+# Skip a full re-fetch when a region reports no upstream edits since the last
+# successful run. Set to "false" to force full fetches while debugging.
+INCREMENTAL = "true"
+# Refuse to normalise an Overpass response larger than this in a Worker; the
+# heap is 128MB. Oversized regions are flagged for the local seed script.
+MAX_RESPONSE_BYTES = "25000000"

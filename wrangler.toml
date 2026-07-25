@@ -1,0 +1,21 @@
+name = "disc-golf-tracker"
+compatibility_date = "2024-09-25"
+pages_build_output_dir = "public"
+
+# ─── D1 Database ───────────────────────────────────────────────
+# Create with:
+#   npx wrangler d1 create disc-golf-tracker-db
+# Then paste the database_id below.
+[[d1_databases]]
+binding = "DB"
+database_name = "disc-golf-tracker-db"
+database_id = "YOUR_DATABASE_ID_HERE"
+
+# ─── Secrets ────────────────────────────────────────────────────
+# JWT_SECRET is deliberately NOT declared here. Anything under [vars]
+# is deployed as a plaintext environment variable and will override a
+# dashboard secret of the same name, so a deploy could silently reset
+# the signing key. Set it as a secret instead:
+#   npx wrangler pages secret put JWT_SECRET --project-name disc-golf-tracker
+# For local dev, put it in .dev.vars (already gitignored):
+#   JWT_SECRET="<openssl rand -hex 32>"

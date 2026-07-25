@@ -1,0 +1,193 @@
+{
+  "version": 0.6,
+  "generator": "fixture (hand-built to the documented disc_golf tagging scheme)",
+  "elements": [
+    {
+      "type": "node",
+      "id": 1001,
+      "version": 7,
+      "lat": 36.1500,
+      "lon": -115.2000,
+      "tags": {
+        "leisure": "disc_golf_course",
+        "name": "Wildhorse DiscGolfPark",
+        "disc_golf:course": "18",
+        "addr:city": "Las Vegas",
+        "addr:state": "NV"
+      }
+    },
+
+    {
+      "type": "way",
+      "id": 2001,
+      "version": 3,
+      "bounds": { "minlat": 36.1500, "minlon": -115.2000, "maxlat": 36.1508, "maxlon": -115.1994 },
+      "geometry": [
+        { "lat": 36.1500, "lon": -115.2000 },
+        { "lat": 36.1504, "lon": -115.1997 },
+        { "lat": 36.1508, "lon": -115.1994 }
+      ],
+      "tags": { "disc_golf": "hole", "par": "3", "dist": "92" }
+    },
+    {
+      "type": "way",
+      "id": 2002,
+      "version": 2,
+      "bounds": { "minlat": 36.1508, "minlon": -115.1994, "maxlat": 36.1516, "maxlon": -115.1988 },
+      "geometry": [
+        { "lat": 36.1508, "lon": -115.1994 },
+        { "lat": 36.1516, "lon": -115.1988 }
+      ],
+      "tags": { "disc_golf": "hole", "par": "4", "dist": "410 ft" }
+    },
+    {
+      "type": "way",
+      "id": 2003,
+      "version": 1,
+      "bounds": { "minlat": 36.1516, "minlon": -115.1988, "maxlat": 36.1521, "maxlon": -115.1983 },
+      "geometry": [
+        { "lat": 36.1516, "lon": -115.1988 },
+        { "lat": 36.1521, "lon": -115.1983 }
+      ],
+      "tags": { "disc_golf": "hole", "dist": "not-a-number" }
+    },
+
+    {
+      "type": "relation",
+      "id": 3001,
+      "version": 4,
+      "members": [
+        { "type": "node", "ref": 1001, "role": "course" },
+        { "type": "way", "ref": 2001, "role": "hole" },
+        { "type": "way", "ref": 2002, "role": "hole" },
+        { "type": "way", "ref": 2003, "role": "hole" }
+      ],
+      "tags": { "type": "disc_golf_layout", "name": "Blue (3)", "disc_golf:layout": "blue" }
+    },
+    {
+      "type": "relation",
+      "id": 3002,
+      "version": 2,
+      "members": [
+        { "type": "node", "ref": 1001, "role": "course" },
+        { "type": "way", "ref": 2003, "role": "hole" },
+        { "type": "way", "ref": 2001, "role": "hole" }
+      ],
+      "tags": { "type": "disc_golf_layout", "name": "Short 2", "tee": "white" }
+    },
+
+    {
+      "type": "node",
+      "id": 1002,
+      "version": 1,
+      "lat": 36.2000,
+      "lon": -115.3000,
+      "tags": { "leisure": "disc_golf_course", "name": "Sunset Park" }
+    },
+    {
+      "type": "way",
+      "id": 2010,
+      "bounds": { "minlat": 36.2001, "minlon": -115.3001, "maxlat": 36.2005, "maxlon": -115.2998 },
+      "geometry": [
+        { "lat": 36.2001, "lon": -115.3001 },
+        { "lat": 36.2005, "lon": -115.2998 }
+      ],
+      "tags": { "disc_golf": "hole", "ref": "2", "par": "3" }
+    },
+    {
+      "type": "way",
+      "id": 2011,
+      "bounds": { "minlat": 36.2006, "minlon": -115.2997, "maxlat": 36.2010, "maxlon": -115.2993 },
+      "geometry": [
+        { "lat": 36.2006, "lon": -115.2997 },
+        { "lat": 36.2010, "lon": -115.2993 }
+      ],
+      "tags": { "disc_golf": "hole", "ref": "1", "par": "3" }
+    },
+
+    {
+      "type": "node",
+      "id": 1003,
+      "version": 1,
+      "lat": 36.3000,
+      "lon": -115.4000,
+      "tags": { "leisure": "disc_golf_course", "name": "Craig Ranch" }
+    },
+    {
+      "type": "way",
+      "id": 2020,
+      "bounds": { "minlat": 36.3020, "minlon": -115.4020, "maxlat": 36.3024, "maxlon": -115.4016 },
+      "geometry": [
+        { "lat": 36.3020, "lon": -115.4020 },
+        { "lat": 36.3024, "lon": -115.4016 }
+      ],
+      "tags": { "disc_golf": "hole", "par": "3" }
+    },
+    {
+      "type": "way",
+      "id": 2021,
+      "bounds": { "minlat": 36.3002, "minlon": -115.4002, "maxlat": 36.3006, "maxlon": -115.3998 },
+      "geometry": [
+        { "lat": 36.3002, "lon": -115.4002 },
+        { "lat": 36.3006, "lon": -115.3998 }
+      ],
+      "tags": { "disc_golf": "hole", "par": "3" }
+    },
+
+    {
+      "type": "node",
+      "id": 1004,
+      "version": 1,
+      "lat": 36.1502,
+      "lon": -115.2002,
+      "tags": { "leisure": "disc_golf_course", "name": "Hole 3" }
+    },
+
+    {
+      "type": "way",
+      "id": 2500,
+      "version": 1,
+      "bounds": { "minlat": 36.1499, "minlon": -115.2005, "maxlat": 36.1505, "maxlon": -115.1995 },
+      "geometry": [
+        { "lat": 36.1499, "lon": -115.2005 },
+        { "lat": 36.1505, "lon": -115.1995 }
+      ],
+      "tags": { "leisure": "disc_golf_course", "name": "Wildhorse Disc Golf Park" }
+    },
+
+    {
+      "type": "node",
+      "id": 1005,
+      "version": 1,
+      "lat": 40.0000,
+      "lon": -100.0000,
+      "tags": { "leisure": "disc_golf_course" }
+    },
+
+    {
+      "type": "way",
+      "id": 2600,
+      "bounds": { "minlat": 45.0000, "minlon": -90.0000, "maxlat": 45.0004, "maxlon": -89.9996 },
+      "geometry": [
+        { "lat": 45.0000, "lon": -90.0000 },
+        { "lat": 45.0004, "lon": -89.9996 }
+      ],
+      "tags": { "disc_golf": "hole", "par": "3" }
+    },
+
+    {
+      "type": "node",
+      "id": 4001,
+      "lat": 36.1500,
+      "lon": -115.2000,
+      "tags": { "disc_golf": "tee", "tee": "white;blue" }
+    },
+    {
+      "type": "node",
+      "id": 4002,
+      "lat": 36.1508,
+      "lon": -115.1994,
+      "tags": { "disc_golf": "basket" }
+    }
+  ]
+}
