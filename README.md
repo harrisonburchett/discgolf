@@ -578,3 +578,28 @@ What was found and fixed in this pass:
 - Confirmed (rather than assumed) that `wrangler d1 migrations apply`'s confirmation
   prompt is auto-skipped in a non-interactive shell — real risk of a CI job hanging
   forever if this weren't true, given the prompt exists at all in interactive use.
+
+---
+
+## Ghost-account bug (found via a real deploy report)
+
+`register.js` used to `INSERT INTO users` *before* calling `signJwt`. If `signJwt` threw
+— most notably when `JWT_SECRET` isn't bound yet, which fails hard by design (see
+above) — the user row was already committed, but the response never came back. From
+the outside this looked like registration silently failed. Retrying then hit "username
+or email already taken" against an account that had, in fact, been created
+successfully — just never confirmed to the person who created it.
+
+Fixed by reordering: `signJwt` (pure crypto, touches no database) now runs before the
+`INSERT`. A failure there leaves no row behind at all. Regression-tested in
+`tests/auth-register.test.mjs`, including the exact end-to-end scenario: fail with no
+secret, confirm zero rows, fix the secret, confirm the same username/email now succeeds
+rather than 409ing.
+
+If you hit "already taken" on what you're sure is your first attempt, check for a
+stray row before assuming anything else is wrong:
+```sql
+SELECT id, username, email, created_at FROM users;
+```
+Under the old code this could happen; under the current code it can't — a failed
+registration request now leaves nothing behind.

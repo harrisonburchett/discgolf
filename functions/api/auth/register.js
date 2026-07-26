@@ -57,14 +57,22 @@ export async function onRequestPost({ request, data, env }) {
   const passwordHash = await hashPassword(password);
   const name = display_name || username;
 
-  await env.DB.prepare(
-    'INSERT INTO users (id, username, email, display_name, password_hash) VALUES (?, ?, ?, ?, ?)'
-  ).bind(id, username, email, name, passwordHash).run();
-
+  // Sign the token BEFORE writing the user row. signJwt touches no database —
+  // it's pure crypto — so this order costs nothing on the success path, but it
+  // closes a real failure mode: if signJwt throws (most notably when
+  // JWT_SECRET is missing or misconfigured — see lib/auth.js), the request
+  // fails with no user row ever created. Insert-then-sign left a ghost
+  // account behind on that exact failure: the row landed, the response never
+  // did, and the next real registration attempt hit "already taken" against
+  // an account the person never knew existed.
   const token = await signJwt(
     { sub: id, username, exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 30 },
     env.JWT_SECRET
   );
+
+  await env.DB.prepare(
+    'INSERT INTO users (id, username, email, display_name, password_hash) VALUES (?, ?, ?, ?, ?)'
+  ).bind(id, username, email, name, passwordHash).run();
 
   return json({
     token,
